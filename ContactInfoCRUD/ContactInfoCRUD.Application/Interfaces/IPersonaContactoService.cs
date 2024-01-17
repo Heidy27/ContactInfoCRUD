@@ -1,6 +1,6 @@
 ﻿using ContactInfoCRUD.Application.DTOs;
 
-namespace TuProyecto.Aplicacion.Interfaces
+namespace ContactInfoCRUD.Application.DTOs
 {
     public interface IPersonaContactoService
     {

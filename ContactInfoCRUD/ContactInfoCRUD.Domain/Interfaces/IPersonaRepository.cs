@@ -1,6 +1,6 @@
 ﻿using ContactInfoCRUD.Domain.Entities;
 
-namespace TuProyecto.Dominio.Interfaces
+namespace ContactInfoCRUD.Domain.Repositories
 {
     public interface IPersonaRepository
     {

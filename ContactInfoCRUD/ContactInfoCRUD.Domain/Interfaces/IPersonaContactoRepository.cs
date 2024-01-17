@@ -1,13 +1,16 @@
 ﻿using ContactInfoCRUD.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace TuProyecto.Dominio.Interfaces
+namespace ContactInfoCRUD.Domain.Repositories
 {
     public interface IPersonaContactoRepository
     {
-        Task<PersonaContacto> GetByIdAsync(Guid id);
-        Task<IEnumerable<PersonaContacto>> GetByPersonaIdAsync(Guid personaId);
-        void Add(PersonaContacto personaContacto);
-        void Update(PersonaContacto personaContacto);
-        void Delete(PersonaContacto personaContacto);
+        Task<PersonaContacto> GetByIdAsync(int id);
+        Task<IEnumerable<PersonaContacto>> GetByPersonaIdAsync(int personaId);
+        Task AddAsync(PersonaContacto personaContacto);
+        Task UpdateAsync(PersonaContacto personaContacto);
+        Task DeleteAsync(PersonaContacto personaContacto);
     }
 }
