@@ -3,6 +3,7 @@ using ContactInfoCRUD.Domain.Repositories;
 using ContactInfoCRUD.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace ContactInfoCRUD.Infrastructure.Repositories
 {
     public class PersonaRepository : IPersonaRepository
@@ -31,20 +32,41 @@ namespace ContactInfoCRUD.Infrastructure.Repositories
 
         public void Add(Persona persona)
         {
-            _context.Personas.Add(persona);
-            _context.SaveChanges();
+            try
+            {
+                _context.Personas.Add(persona);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar la persona", ex);
+            }
         }
 
         public void Update(Persona persona)
         {
-            _context.Entry(persona).State = EntityState.Modified;
-            _context.SaveChanges();
+            try
+            {
+                _context.Entry(persona).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar la persona", ex);
+            }
         }
 
         public void Delete(Persona persona)
         {
-            _context.Personas.Remove(persona);
-            _context.SaveChanges();
+            try
+            {
+                _context.Personas.Remove(persona);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la persona", ex);
+            }
         }
     }
 }
