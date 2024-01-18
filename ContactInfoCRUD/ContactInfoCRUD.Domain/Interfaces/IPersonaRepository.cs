@@ -1,14 +1,17 @@
 ﻿using ContactInfoCRUD.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ContactInfoCRUD.Domain.Repositories
 {
     public interface IPersonaRepository
     {
-        Task<Persona> GetByIdAsync(Guid id);
+        Task<Persona> GetByIdAsync(int id);
         Task<Persona> GetByCedulaAsync(string cedula);
         Task<IEnumerable<Persona>> GetAllAsync();
-        void Add(Persona persona);
-        void Update(Persona persona);
-        void Delete(Persona persona);
+        Task AddAsync(Persona persona);
+        Task UpdateAsync(Persona persona);
+        Task DeleteAsync(Persona persona);
     }
 }
