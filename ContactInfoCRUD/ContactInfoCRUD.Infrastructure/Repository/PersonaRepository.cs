@@ -15,7 +15,7 @@ namespace ContactInfoCRUD.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Persona> GetByIdAsync(Guid id)
+        public async Task<Persona> GetByIdAsync(int id)
         {
             return await _context.Personas.FindAsync(id);
         }
@@ -30,12 +30,12 @@ namespace ContactInfoCRUD.Infrastructure.Repositories
             return await _context.Personas.ToListAsync();
         }
 
-        public void Add(Persona persona)
+        public async Task AddAsync(Persona persona)
         {
             try
             {
-                _context.Personas.Add(persona);
-                _context.SaveChanges();
+                await _context.Personas.AddAsync(persona);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -43,12 +43,12 @@ namespace ContactInfoCRUD.Infrastructure.Repositories
             }
         }
 
-        public void Update(Persona persona)
+        public async Task UpdateAsync(Persona persona)
         {
             try
             {
                 _context.Entry(persona).State = EntityState.Modified;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -56,12 +56,12 @@ namespace ContactInfoCRUD.Infrastructure.Repositories
             }
         }
 
-        public void Delete(Persona persona)
+        public async Task DeleteAsync(Persona persona)
         {
             try
             {
                 _context.Personas.Remove(persona);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

@@ -8,11 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ContactInfoCRUD.Application\ContactInfoCRUD.Application.csproj" />
     <ProjectReference Include="..\ContactInfoCRUD.Domain\ContactInfoCRUD.Domain.csproj" />
     <ProjectReference Include="..\ContactInfoCRUD.Infrastructure\ContactInfoCRUD.Infrastructure.csproj" />
   </ItemGroup>

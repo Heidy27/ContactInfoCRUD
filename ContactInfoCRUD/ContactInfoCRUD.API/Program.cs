@@ -1,22 +1,43 @@
 using Microsoft.EntityFrameworkCore;
 using ContactInfoCRUD.Infrastructure.Data;
 using ContactInfoCRUD.Domain.Repositories;
-using Swashbuckle.AspNetCore.Swagger;
+using ContactInfoCRUD.Infrastructure.Repositories;
+using ContactInfoCRUD.Application.Services;
+using ContactInfoCRUD.Application.Handlers;
+using AutoMapper;
 using Microsoft.OpenApi.Models;
+using ContactInfoCRUD.Application.DTOs;
+using MediatR;
+using System.Reflection.Metadata;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
 // Configuración de DbContext
 builder.Services.AddDbContext<ContactInfoDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Registro de repositorios
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPersonaContactoRepository, PersonaContactoRepository>();
+
+// Registro de servicios
+builder.Services.AddScoped<IPersonaService, PersonaService>();
+builder.Services.AddScoped<IPersonaContactoService, PersonaContactoService>();
+
+// Configuración de AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Configuración de MediatR
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<GetPersonasByCedulaQueryHandler>();
+});
+
+
 
 // Configuración de Swagger
 builder.Services.AddEndpointsApiExplorer();
