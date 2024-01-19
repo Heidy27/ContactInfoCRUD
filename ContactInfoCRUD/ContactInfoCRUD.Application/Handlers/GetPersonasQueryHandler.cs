@@ -18,10 +18,8 @@ public class GetPersonasQueryHandler : IRequestHandler<GetPersonasQuery, IEnumer
 
     public async Task<IEnumerable<PersonaDto>> Handle(GetPersonasQuery request, CancellationToken cancellationToken)
     {
-        // Aquí implementa la lógica para obtener todas las personas desde el repositorio
         var personas = await _personaRepository.GetAllAsync();
 
-        // Mapea las entidades Persona a PersonaDto
         var personasDto = _mapper.Map<IEnumerable<PersonaDto>>(personas);
 
         return personasDto;

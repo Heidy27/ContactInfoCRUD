@@ -18,10 +18,9 @@ public class GetPersonasByCedulaQueryHandler : IRequestHandler<GetPersonaByCedul
 
     public async Task<PersonaDto> Handle(GetPersonaByCedulaQuery request, CancellationToken cancellationToken)
     {
-        // Aquí implementa la lógica para obtener la persona por cédula desde el repositorio
+        
         var persona = await _personaRepository.GetByCedulaAsync(request.Cedula);
 
-        // Mapea la entidad Persona a PersonaDto
         var personaDto = _mapper.Map<PersonaDto>(persona);
 
         return personaDto;

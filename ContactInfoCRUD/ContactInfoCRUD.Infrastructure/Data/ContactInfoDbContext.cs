@@ -34,6 +34,14 @@ namespace ContactInfoCRUD.Infrastructure.Data
                       .WithMany(p => p.Contactos)
                       .HasForeignKey(d => d.PersonaId);
             });
+
+            modelBuilder.Entity<Persona>().HasData(
+               new Persona { Id = 1, Nombre = "Juan Perez", Cedula = "001-1234567-8" }
+           );
+
+            modelBuilder.Entity<PersonaContacto>().HasData(
+                new PersonaContacto { Id = 1, PersonaId = 1, Celular = "800-000-0000", Telefono = "829-000-0000", Correo = "juan@example.com", Dirección = "Calle Ejemplo 123" }
+            );
         }
     }
 }

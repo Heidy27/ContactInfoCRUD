@@ -8,18 +8,32 @@ using ContactInfoCRUD.Application.Querys;
 public class PersonaContactosController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly ILogger<PersonaContactosController> _logger;
 
-    public PersonaContactosController(IMediator mediator)
+
+    public PersonaContactosController(IMediator mediator, ILogger<PersonaContactosController> logger)
     {
-        _mediator = mediator;
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     [HttpGet("{personaId}")]
-    public async Task<IActionResult> GetAllContactosByPersonaId(int personaId)
+    public async Task<ActionResult> GetAllContactosByPersonaId(int personaId)
     {
-        var query = new GetAllContactosByPersonaIdQuery(personaId);
-        var contactos = await _mediator.Send(query);
-        return Ok(contactos);
+        try
+        {
+            var query = new GetAllContactosByPersonaIdQuery(personaId);
+            var contactos = await _mediator.Send(query);
+            return Ok(contactos);
+        }
+        catch (Exception ex)
+        {
+            // Log the exception details to help with debugging
+            _logger.LogError(ex, "An error occurred while processing the request.");
+
+            // Return a more detailed error message
+            return StatusCode(500, $"Ocurrio un error: {ex.Message}");
+        }
     }
 
     [HttpGet("contacto/{id}")]
