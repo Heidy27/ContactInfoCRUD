@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using ContactInfoCRUD.Application.Command;
-using ContactInfoCRUD.Application.Queries;
-
+using ContactInfoCRUD.Application.Querys;
 
 [Route("api/[controller]")]
 [ApiController]

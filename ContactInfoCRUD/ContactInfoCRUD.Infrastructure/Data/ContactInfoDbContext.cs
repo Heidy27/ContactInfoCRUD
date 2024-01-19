@@ -13,9 +13,9 @@ namespace ContactInfoCRUD.Infrastructure.Data
         public DbSet<Persona> Personas { get; set; }
         public DbSet<PersonaContacto> PersonaContactos { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Persona>(entity =>
             {
                 entity.HasKey(e => e.Id);

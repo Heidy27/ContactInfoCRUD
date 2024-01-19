@@ -8,8 +8,7 @@ using AutoMapper;
 using Microsoft.OpenApi.Models;
 using ContactInfoCRUD.Application.DTOs;
 using MediatR;
-using System.Reflection.Metadata;
-using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +26,7 @@ builder.Services.AddScoped<IPersonaContactoRepository, PersonaContactoRepository
 // Registro de servicios
 builder.Services.AddScoped<IPersonaService, PersonaService>();
 builder.Services.AddScoped<IPersonaContactoService, PersonaContactoService>();
+
 
 // Configuración de AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
