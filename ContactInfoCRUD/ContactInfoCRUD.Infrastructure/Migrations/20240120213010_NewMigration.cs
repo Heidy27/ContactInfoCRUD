@@ -5,13 +5,13 @@
 namespace ContactInfoCRUD.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class NewMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Personas",
+                name: "PERSONA",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
@@ -21,11 +21,11 @@ namespace ContactInfoCRUD.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Personas", x => x.Id);
+                    table.PrimaryKey("PK_PERSONA", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonaContactos",
+                name: "PERSONACONTACTO",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
@@ -38,28 +38,28 @@ namespace ContactInfoCRUD.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonaContactos", x => x.Id);
+                    table.PrimaryKey("PK_PERSONACONTACTO", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PersonaContactos_Personas_PersonaId",
+                        name: "FK_PERSONACONTACTO_PERSONA_PersonaId",
                         column: x => x.PersonaId,
-                        principalTable: "Personas",
+                        principalTable: "PERSONA",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Personas",
+                table: "PERSONA",
                 columns: new[] { "Id", "Cedula", "Nombre" },
-                values: new object[] { 1, "001-1234567-8", "Juan Perez" });
+                values: new object[] { 2, "002-1234567-8", "Laura" });
 
             migrationBuilder.InsertData(
-                table: "PersonaContactos",
+                table: "PERSONACONTACTO",
                 columns: new[] { "Id", "Celular", "Correo", "Dirección", "PersonaId", "Telefono" },
-                values: new object[] { 1, "800-000-0000", "juan@example.com", "Calle Ejemplo 123", 1, "829-000-0000" });
+                values: new object[] { 2, "823-000-0000", "juan@example.com", "Calle Ejemplo 123", 2, "829-030-0000" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonaContactos_PersonaId",
-                table: "PersonaContactos",
+                name: "IX_PERSONACONTACTO_PersonaId",
+                table: "PERSONACONTACTO",
                 column: "PersonaId");
         }
 
@@ -67,10 +67,10 @@ namespace ContactInfoCRUD.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PersonaContactos");
+                name: "PERSONACONTACTO");
 
             migrationBuilder.DropTable(
-                name: "Personas");
+                name: "PERSONA");
         }
     }
 }

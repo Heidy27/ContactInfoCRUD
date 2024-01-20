@@ -13,18 +13,25 @@ namespace ContactInfoCRUD.Infrastructure.Data
         public DbSet<Persona> Personas { get; set; }
         public DbSet<PersonaContacto> PersonaContactos { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Configura las entidades según el esquema de la base de datos Oracle
+
+            // Configuración para la entidad Persona
             modelBuilder.Entity<Persona>(entity =>
             {
+                entity.ToTable("PERSONA"); // Asegúrate de que esto coincida con el nombre real de la tabla en la base de datos
+
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre).IsRequired();
                 entity.Property(e => e.Cedula).IsRequired();
             });
 
+            // Configuración para la entidad PersonaContacto
             modelBuilder.Entity<PersonaContacto>(entity =>
             {
+                entity.ToTable("PERSONACONTACTO"); 
+
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Celular).HasMaxLength(20);
                 entity.Property(e => e.Telefono).HasMaxLength(20);
@@ -35,12 +42,13 @@ namespace ContactInfoCRUD.Infrastructure.Data
                       .HasForeignKey(d => d.PersonaId);
             });
 
+            // Datos de semilla (opcional)
             modelBuilder.Entity<Persona>().HasData(
-               new Persona { Id = 1, Nombre = "Juan Perez", Cedula = "001-1234567-8" }
-           );
+                new Persona { Id = 2, Nombre = "Laura", Cedula = "002-1234567-8" }
+            );
 
             modelBuilder.Entity<PersonaContacto>().HasData(
-                new PersonaContacto { Id = 1, PersonaId = 1, Celular = "800-000-0000", Telefono = "829-000-0000", Correo = "juan@example.com", Dirección = "Calle Ejemplo 123" }
+                new PersonaContacto { Id = 2, PersonaId = 2, Celular = "823-000-0000", Telefono = "829-030-0000", Correo = "juan@example.com", Dirección = "Calle Ejemplo 123" }
             );
         }
     }

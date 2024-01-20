@@ -12,6 +12,8 @@ using ContactInfoCRUD.Application.Querys;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using System.Reflection;
+using ContactInfoCRUD.Domain.Interfaces;
+using ContactInfoCRUD.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,8 +32,12 @@ builder.Services.AddScoped<IPersonaContactoService, PersonaContactoService>();
 // Configuración de AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
 // Configuración de MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetPersonasByCedulaQueryHandler>());
+
+// Registra IUnitOfWork y su implementación UnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 

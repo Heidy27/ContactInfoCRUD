@@ -3,6 +3,8 @@ using MediatR;
 using ContactInfoCRUD.Application.Command;
 using ContactInfoCRUD.Application.Querys;
 
+namespace ContactInfoCRUD.API.Controllers;
+
 [Route("api/[controller]")]
 [ApiController]
 public class PersonaContactosController : ControllerBase
@@ -28,10 +30,8 @@ public class PersonaContactosController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Log the exception details to help with debugging
-            _logger.LogError(ex, "An error occurred while processing the request.");
+            _logger.LogError(ex, "Se produjo un error al procesar la solicitud.");
 
-            // Return a more detailed error message
             return StatusCode(500, $"Ocurrio un error: {ex.Message}");
         }
     }

@@ -3,7 +3,6 @@ using ContactInfoCRUD.Domain.Repositories;
 using ContactInfoCRUD.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace ContactInfoCRUD.Infrastructure.Repositories
 {
     public class PersonaRepository : IPersonaRepository
@@ -32,41 +31,18 @@ namespace ContactInfoCRUD.Infrastructure.Repositories
 
         public async Task AddAsync(Persona persona)
         {
-            try
-            {
-                await _context.Personas.AddAsync(persona);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al agregar la persona", ex);
-            }
+            await _context.Personas.AddAsync(persona);
         }
 
         public async Task UpdateAsync(Persona persona)
         {
-            try
-            {
-                _context.Entry(persona).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al actualizar la persona", ex);
-            }
+            _context.Entry(persona).State = EntityState.Modified;
         }
 
         public async Task DeleteAsync(Persona persona)
         {
-            try
-            {
-                _context.Personas.Remove(persona);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar la persona", ex);
-            }
+            _context.Personas.Remove(persona);
         }
+
     }
 }

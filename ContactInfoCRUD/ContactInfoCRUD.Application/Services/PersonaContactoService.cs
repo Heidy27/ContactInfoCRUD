@@ -1,5 +1,6 @@
 ﻿using ContactInfoCRUD.Application.DTOs;
 using ContactInfoCRUD.Domain.Entities;
+using ContactInfoCRUD.Domain.Interfaces; 
 using ContactInfoCRUD.Domain.Repositories;
 using AutoMapper;
 
@@ -10,11 +11,13 @@ namespace ContactInfoCRUD.Application.Services
     {
         private readonly IPersonaContactoRepository _personaContactoRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PersonaContactoService(IPersonaContactoRepository personaContactoRepository, IMapper mapper)
+        public PersonaContactoService(IPersonaContactoRepository personaContactoRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _personaContactoRepository = personaContactoRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<PersonaContactoDto>> GetAllContactosByPersonaIdAsync(int personaId)
@@ -33,6 +36,7 @@ namespace ContactInfoCRUD.Application.Services
         {
             var contacto = _mapper.Map<PersonaContacto>(contactoDto);
             await _personaContactoRepository.AddAsync(contacto);
+            await _unitOfWork.CommitAsync();
             return _mapper.Map<PersonaContactoDto>(contacto);
         }
 
@@ -41,12 +45,14 @@ namespace ContactInfoCRUD.Application.Services
             var contacto = await _personaContactoRepository.GetByIdAsync(id);
             _mapper.Map(contactoDto, contacto);
             await _personaContactoRepository.UpdateAsync(contacto);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteContactoAsync(int id)
         {
             var contacto = await _personaContactoRepository.GetByIdAsync(id);
             await _personaContactoRepository.DeleteAsync(contacto);
+            await _unitOfWork.CommitAsync();
         }
     }
 }

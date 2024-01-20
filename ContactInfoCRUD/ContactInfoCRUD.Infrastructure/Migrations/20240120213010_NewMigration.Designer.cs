@@ -11,8 +11,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace ContactInfoCRUD.Infrastructure.Migrations
 {
     [DbContext(typeof(ContactInfoDbContext))]
-    [Migration("20240119165157_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240120213010_NewMigration")]
+    partial class NewMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,14 +42,14 @@ namespace ContactInfoCRUD.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personas");
+                    b.ToTable("PERSONA", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Cedula = "001-1234567-8",
-                            Nombre = "Juan Perez"
+                            Id = 2,
+                            Cedula = "002-1234567-8",
+                            Nombre = "Laura"
                         });
                 });
 
@@ -88,17 +88,17 @@ namespace ContactInfoCRUD.Infrastructure.Migrations
 
                     b.HasIndex("PersonaId");
 
-                    b.ToTable("PersonaContactos");
+                    b.ToTable("PERSONACONTACTO", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Celular = "800-000-0000",
+                            Id = 2,
+                            Celular = "823-000-0000",
                             Correo = "juan@example.com",
                             Dirección = "Calle Ejemplo 123",
-                            PersonaId = 1,
-                            Telefono = "829-000-0000"
+                            PersonaId = 2,
+                            Telefono = "829-030-0000"
                         });
                 });
 

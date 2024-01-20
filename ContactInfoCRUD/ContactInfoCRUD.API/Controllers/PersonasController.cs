@@ -3,6 +3,8 @@ using MediatR;
 using ContactInfoCRUD.Application.Command;
 using ContactInfoCRUD.Application.Querys;
 
+namespace ContactInfoCRUD.API.Controllers;
+
 [Route("api/[controller]")]
 [ApiController]
 public class PersonasController : ControllerBase
