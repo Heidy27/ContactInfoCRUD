@@ -20,7 +20,7 @@ namespace ContactInfoCRUD.Infrastructure.Data
             // Configuración para la entidad Persona
             modelBuilder.Entity<Persona>(entity =>
             {
-                entity.ToTable("PERSONA"); // Asegúrate de que esto coincida con el nombre real de la tabla en la base de datos
+                entity.ToTable("PERSONA"); 
 
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre).IsRequired();

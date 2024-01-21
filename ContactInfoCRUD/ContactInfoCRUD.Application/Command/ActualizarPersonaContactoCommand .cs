@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 namespace ContactInfoCRUD.Application.Command;
-public class ActualizarPersonaContactoCommand : IRequest 
+public class ActualizarPersonaContactoCommand : IRequest<Unit>
 {
     public int PersonaContactoId { get; set; }
     public string NuevoCelular { get; set; }

@@ -36,6 +36,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Configuración de MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetPersonasByCedulaQueryHandler>());
 
+
 // Registra IUnitOfWork y su implementación UnitOfWork
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

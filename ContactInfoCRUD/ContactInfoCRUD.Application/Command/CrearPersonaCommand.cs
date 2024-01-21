@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using ContactInfoCRUD.Application.DTOs;
+using MediatR;
 
 namespace ContactInfoCRUD.Application.Command;
 public class CrearPersonaCommand : IRequest<int> 

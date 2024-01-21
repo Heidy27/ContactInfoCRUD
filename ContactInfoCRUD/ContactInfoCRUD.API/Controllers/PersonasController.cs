@@ -39,8 +39,15 @@ public class PersonasController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CrearPersonaCommand command)
     {
-        var personaId = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetByCedula), new { cedula = command.Cedula }, new { personaId });
+        try
+        {
+            var personaId = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetByCedula), new { cedula = command.Cedula }, new { personaId });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut("{id}")]

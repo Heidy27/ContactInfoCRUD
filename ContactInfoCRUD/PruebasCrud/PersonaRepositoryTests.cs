@@ -39,6 +39,5 @@ namespace ContactInfoCRUD.Tests
             Assert.Equal("123456789", savedPersona.Cedula);
         }
 
-        // Puedes agregar más pruebas para UpdateAsync, DeleteAsync, etc.
     }
 }
