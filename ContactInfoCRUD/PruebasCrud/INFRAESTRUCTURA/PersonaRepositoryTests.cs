@@ -6,7 +6,7 @@ using ContactInfoCRUD.Domain.Entities;
 using ContactInfoCRUD.Infrastructure.Repositories;
 using System.Threading.Tasks;
 
-namespace ContactInfoCRUD.Tests
+namespace PruebasCrud.INFRAESTRUCTURA
 {
     public class PersonaRepositoryTests
     {

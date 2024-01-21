@@ -10,20 +10,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContactInfoCRUD.Application.DTOs;
 
-namespace ContactInfoCRUD.Tests
+namespace PruebasCrud.APLICACION
 {
     public class PersonaServiceTests
     {
         private readonly Mock<IPersonaRepository> _mockRepository;
         private readonly Mock<IMapper> _mockMapper;
-        private readonly Mock<IUnitOfWork> _mockUnitOfWork; 
+        private readonly Mock<IUnitOfWork> _mockUnitOfWork;
         private readonly PersonaService _service;
 
         public PersonaServiceTests()
         {
             _mockRepository = new Mock<IPersonaRepository>();
             _mockMapper = new Mock<IMapper>();
-            _mockUnitOfWork = new Mock<IUnitOfWork>(); 
+            _mockUnitOfWork = new Mock<IUnitOfWork>();
             _service = new PersonaService(_mockRepository.Object, _mockMapper.Object, _mockUnitOfWork.Object);
         }
 

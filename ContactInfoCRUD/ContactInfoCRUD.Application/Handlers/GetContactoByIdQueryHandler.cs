@@ -3,9 +3,6 @@ using ContactInfoCRUD.Application.DTOs;
 using ContactInfoCRUD.Application.Querys;
 using ContactInfoCRUD.Domain.Repositories;
 using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class GetContactoByIdQueryHandler : IRequestHandler<GetContactoByIdQuery, PersonaContactoDto>
 {
@@ -20,14 +17,11 @@ public class GetContactoByIdQueryHandler : IRequestHandler<GetContactoByIdQuery,
 
     public async Task<PersonaContactoDto> Handle(GetContactoByIdQuery request, CancellationToken cancellationToken)
     {
-        try
+        var contacto = await _personaContactoRepository.GetByIdAsync(request.Id);
+        if (contacto == null)
         {
-            var contacto = await _personaContactoRepository.GetByIdAsync(request.Id);
-            return _mapper.Map<PersonaContactoDto>(contacto);
+            throw new KeyNotFoundException($"No se encontró el contacto con el ID: {request.Id}.");
         }
-        catch (Exception ex)
-        {
-            throw new ApplicationException("Ocurrió un error al obtener el contacto por ID.", ex);
-        }
+        return _mapper.Map<PersonaContactoDto>(contacto);
     }
 }

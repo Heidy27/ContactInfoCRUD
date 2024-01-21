@@ -2,6 +2,7 @@
 using MediatR;
 using ContactInfoCRUD.Application.Command;
 using ContactInfoCRUD.Application.Querys;
+using System.Net;
 
 namespace ContactInfoCRUD.API.Controllers;
 
@@ -46,16 +47,23 @@ public class PersonasController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
         }
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] ActualizarPersonaCommand command)
     {
-        command.PersonaId = id;
-        await _mediator.Send(command);
-        return NoContent();
+        try
+        {
+            command.PersonaId = id;
+            await _mediator.Send(command);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+        }
     }
 
     [HttpDelete("{id}")]
