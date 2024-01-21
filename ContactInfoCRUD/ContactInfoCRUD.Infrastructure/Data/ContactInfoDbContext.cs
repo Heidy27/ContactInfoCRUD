@@ -15,7 +15,7 @@ namespace ContactInfoCRUD.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configura las entidades según el esquema de la base de datos Oracle
+            // Configuración las entidades según el esquema de la base de datos Oracle
 
             // Configuración para la entidad Persona
             modelBuilder.Entity<Persona>(entity =>

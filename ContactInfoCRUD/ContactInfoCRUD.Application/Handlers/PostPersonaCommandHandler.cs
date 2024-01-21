@@ -3,9 +3,6 @@ using ContactInfoCRUD.Domain.Entities;
 using ContactInfoCRUD.Domain.Repositories;
 using ContactInfoCRUD.Domain.Interfaces;
 using AutoMapper;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using ContactInfoCRUD.Application.Command;
 
 namespace ContactInfoCRUD.Application.Handlers
