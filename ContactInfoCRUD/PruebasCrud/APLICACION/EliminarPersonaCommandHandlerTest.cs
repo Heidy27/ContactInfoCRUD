@@ -17,7 +17,7 @@ public class EliminarPersonaCommandHandlerTest
         mockPersonaRepository.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync(persona);
 
         var handler = new EliminarPersonaCommandHandler(mockPersonaRepository.Object, mockUnitOfWork.Object);
-        var command = new EliminarPersonaCommand { PersonaId = 1 };
+        var command = new DeletePersonaCommand { PersonaId = 1 };
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -36,7 +36,7 @@ public class EliminarPersonaCommandHandlerTest
         mockPersonaRepository.Setup(repo => repo.GetByIdAsync(1)).ReturnsAsync((Persona)null);
 
         var handler = new EliminarPersonaCommandHandler(mockPersonaRepository.Object, mockUnitOfWork.Object);
-        var command = new EliminarPersonaCommand { PersonaId = 1 };
+        var command = new DeletePersonaCommand { PersonaId = 1 };
 
         // Act & Assert
         await Assert.ThrowsAsync<KeyNotFoundException>(() => handler.Handle(command, CancellationToken.None));
