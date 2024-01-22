@@ -2,7 +2,7 @@
 
 namespace ContactInfoCRUD.Application.DTOs
 {
-    public class CrearPersonaContactoDto
+    public class GetPersonaContactoDto
     {
         public int Id { get; set; }
         public string Celular { get; set; }

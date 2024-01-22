@@ -3,7 +3,7 @@ using ContactInfoCRUD.Domain.Interfaces;
 using ContactInfoCRUD.Domain.Repositories;
 using MediatR;
 
-public class PutPersonaCommandHandler : IRequestHandler<ActualizarPersonaCommand, Unit>
+public class PutPersonaCommandHandler : IRequestHandler<PutPersonaCommand, Unit>
 {
     private readonly IPersonaRepository _personaRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -14,7 +14,7 @@ public class PutPersonaCommandHandler : IRequestHandler<ActualizarPersonaCommand
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Unit> Handle(ActualizarPersonaCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(PutPersonaCommand request, CancellationToken cancellationToken)
     {
         var persona = await _personaRepository.GetByIdAsync(request.PersonaId);
         if (persona == null)

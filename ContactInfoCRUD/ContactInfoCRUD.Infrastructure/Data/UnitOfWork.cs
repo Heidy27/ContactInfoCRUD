@@ -1,6 +1,5 @@
 ﻿using ContactInfoCRUD.Domain.Interfaces;
 using ContactInfoCRUD.Infrastructure.Data;
-using System.Threading.Tasks;
 
 namespace ContactInfoCRUD.Infrastructure
 {
@@ -13,11 +12,13 @@ namespace ContactInfoCRUD.Infrastructure
             _context = context;
         }
 
+        // Guarda los cambios en la base de datos de manera asíncrona
         public async Task<int> CommitAsync()
         {
             return await _context.SaveChangesAsync();
         }
 
+        // Libera los recursos utilizados por el contexto de la base de datos
         public void Dispose()
         {
             _context.Dispose();

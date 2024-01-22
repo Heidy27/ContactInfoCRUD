@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ContactInfoCRUD.Application.DTOs
 {
-    public class CrearPersonaDto
+    public class GetPersonaDto
     {
         public string Nombre { get; set; }
         public string Cedula { get; set; }
-        public List<CrearPersonaContactoDto> Contactos { get; set; }
+        public List<GetPersonaContactoDto> Contactos { get; set; }
 
     }
 }

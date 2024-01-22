@@ -1,6 +1,6 @@
 ﻿using ContactInfoCRUD.Application.DTOs;
 using ContactInfoCRUD.Domain.Entities;
-using ContactInfoCRUD.Domain.Interfaces; 
+using ContactInfoCRUD.Domain.Interfaces;
 using ContactInfoCRUD.Domain.Repositories;
 using AutoMapper;
 using System.Collections.Generic;
@@ -21,18 +21,22 @@ namespace ContactInfoCRUD.Application.Services
             _unitOfWork = unitOfWork;
         }
 
+        // Obtiene todas las personas en la base de datos
         public async Task<IEnumerable<PersonaDto>> GetAllPersonasAsync()
         {
             var personas = await _personaRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<PersonaDto>>(personas);
         }
 
+        // Obtiene una persona por su ID
         public async Task<PersonaDto> GetPersonaByIdAsync(int id)
         {
             var persona = await _personaRepository.GetByIdAsync(id);
             return _mapper.Map<PersonaDto>(persona);
         }
-        public async Task<PersonaDto> CreatePersonaAsync(CrearPersonaDto personaDto)
+
+        // Crea una nueva persona en la base de datos
+        public async Task<PersonaDto> CreatePersonaAsync(GetPersonaDto personaDto)
         {
             var persona = _mapper.Map<Persona>(personaDto);
             await _personaRepository.AddAsync(persona);
@@ -40,6 +44,7 @@ namespace ContactInfoCRUD.Application.Services
             return _mapper.Map<PersonaDto>(persona);
         }
 
+        // Actualiza una persona por su ID
         public async Task UpdatePersonaAsync(int id, PersonaDto personaDto)
         {
             var persona = await _personaRepository.GetByIdAsync(id);
@@ -48,6 +53,7 @@ namespace ContactInfoCRUD.Application.Services
             await _unitOfWork.CommitAsync();
         }
 
+        // Elimina una persona por su ID
         public async Task DeletePersonaAsync(int id)
         {
             var persona = await _personaRepository.GetByIdAsync(id);
