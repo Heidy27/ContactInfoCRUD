@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 namespace ContactInfoCRUD.Application.Command;
-public class CrearPersonaContactoCommand : IRequest<int> 
+public class GetPersonaContactoCommand : IRequest<int> 
 {
     public int PersonaId { get; set; }
     public string Celular { get; set; }

@@ -1,4 +1,4 @@
-﻿public class ActualizarPersonaContactoDTO
+﻿public class PutPersonaContactoDto
 {
     public int Id { get; set; } 
     public string Celular { get; set; } 

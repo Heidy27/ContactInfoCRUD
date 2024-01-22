@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 namespace ContactInfoCRUD.Application.Command;
-public class EliminarPersonaContactoCommand : IRequest<Unit>
+public class DeletePersonaContactoCommand : IRequest<Unit>
 {
     public int PersonaContactoId { get; set; }
 }

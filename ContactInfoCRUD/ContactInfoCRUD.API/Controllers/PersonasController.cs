@@ -37,7 +37,7 @@ public class PersonasController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CrearPersonaCommand command)
+    public async Task<IActionResult> Create([FromBody] GetPersonaCommand command)
     {
         try
         {
@@ -51,7 +51,7 @@ public class PersonasController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] ActualizarPersonaCommand command)
+    public async Task<IActionResult> Update(int id, [FromBody] PutPersonaCommand command)
     {
         command.PersonaId = id;
         await _mediator.Send(command);
@@ -61,7 +61,7 @@ public class PersonasController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var command = new EliminarPersonaCommand { PersonaId = id };
+        var command = new DeletePersonaCommand { PersonaId = id };
         await _mediator.Send(command);
         return NoContent();
     }

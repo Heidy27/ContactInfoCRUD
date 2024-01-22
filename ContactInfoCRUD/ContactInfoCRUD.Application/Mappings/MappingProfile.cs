@@ -11,14 +11,14 @@ namespace ContactInfoCRUD.Application.Mappings
         {
             // Mapeos de Persona
             CreateMap<Persona, PersonaDto>();
-            CreateMap<CrearPersonaDto, Persona>();
+            CreateMap<GetPersonaDto, Persona>();
 
             // Mapeos de PersonaContacto
             CreateMap<PersonaContacto, PersonaContactoDto>();
-            CreateMap<CrearPersonaContactoDto, PersonaContacto>();
+            CreateMap<GetPersonaContactoDto, PersonaContacto>();
 
             // Mapeo - Crear persona o persona contacto
-            CreateMap<CrearPersonaContactoCommand, PersonaContacto>()
+            CreateMap<GetPersonaContactoCommand, PersonaContacto>()
                 .ForMember(dest => dest.Celular, opt => opt.MapFrom(src => src.Celular))
                 .ForMember(dest => dest.Telefono, opt => opt.MapFrom(src => src.Telefono))
                 .ForMember(dest => dest.Correo, opt => opt.MapFrom(src => src.Correo))
@@ -33,8 +33,8 @@ namespace ContactInfoCRUD.Application.Mappings
                 .ForMember(dest => dest.Dirección, opt => opt.MapFrom(src => src.NuevaDireccion));
 
             // Mapeo - Comando de eliminar una persona o persona de contacto
-            CreateMap<EliminarPersonaCommand, Persona>();
-            CreateMap<EliminarPersonaContactoCommand, PersonaContacto>();
+            CreateMap<DeletePersonaCommand, Persona>();
+            CreateMap<DeletePersonaContactoCommand, PersonaContacto>();
 
         }
     }

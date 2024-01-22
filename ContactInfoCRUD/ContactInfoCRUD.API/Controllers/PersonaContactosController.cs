@@ -49,7 +49,7 @@ public class PersonaContactosController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateContacto([FromBody] CrearPersonaContactoCommand command)
+    public async Task<IActionResult> CreateContacto([FromBody] GetPersonaContactoCommand command)
     {
         var contactoId = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetContactoById), new { id = contactoId }, contactoId);
@@ -66,7 +66,7 @@ public class PersonaContactosController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteContacto(int id)
     {
-        var command = new EliminarPersonaContactoCommand { PersonaContactoId = id };
+        var command = new DeletePersonaContactoCommand { PersonaContactoId = id };
         await _mediator.Send(command);
         return NoContent();
     }

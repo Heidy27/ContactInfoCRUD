@@ -7,7 +7,7 @@ namespace ContactInfoCRUD.Application.DTOs
     {
         Task<IEnumerable<PersonaDto>> GetAllPersonasAsync();
         Task<PersonaDto> GetPersonaByIdAsync(int id);
-        Task<PersonaDto> CreatePersonaAsync(CrearPersonaDto personaDto);
+        Task<PersonaDto> CreatePersonaAsync(GetPersonaDto personaDto);
         Task UpdatePersonaAsync(int id, PersonaDto personaDto);
         Task DeletePersonaAsync(int id);
     }

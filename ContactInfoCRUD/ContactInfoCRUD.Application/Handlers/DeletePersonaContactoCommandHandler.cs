@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ContactInfoCRUD.Application.Handlers
 {
-    public class EliminarPersonaContactoCommandHandler : IRequestHandler<EliminarPersonaContactoCommand, Unit>
+    public class EliminarPersonaContactoCommandHandler : IRequestHandler<DeletePersonaContactoCommand, Unit>
     {
         private readonly IPersonaContactoRepository _personaContactoRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -16,7 +16,7 @@ namespace ContactInfoCRUD.Application.Handlers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Unit> Handle(EliminarPersonaContactoCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeletePersonaContactoCommand request, CancellationToken cancellationToken)
         {
             var personaContacto = await _personaContactoRepository.GetByIdAsync(request.PersonaContactoId);
             if (personaContacto == null)

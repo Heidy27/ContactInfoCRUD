@@ -3,7 +3,7 @@ using ContactInfoCRUD.Domain.Interfaces;
 using ContactInfoCRUD.Domain.Repositories;
 using MediatR;
 
-public class EliminarPersonaCommandHandler : IRequestHandler<EliminarPersonaCommand, Unit>
+public class EliminarPersonaCommandHandler : IRequestHandler<DeletePersonaCommand, Unit>
 {
     private readonly IPersonaRepository _personaRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -14,7 +14,7 @@ public class EliminarPersonaCommandHandler : IRequestHandler<EliminarPersonaComm
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Unit> Handle(EliminarPersonaCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeletePersonaCommand request, CancellationToken cancellationToken)
     {
         var persona = await _personaRepository.GetByIdAsync(request.PersonaId);
         if (persona == null)

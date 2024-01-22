@@ -7,7 +7,7 @@ using ContactInfoCRUD.Application.Command;
 
 namespace ContactInfoCRUD.Application.Handlers
 {
-    public class CrearPersonaCommandHandler : IRequestHandler<CrearPersonaCommand, int>
+    public class CrearPersonaCommandHandler : IRequestHandler<GetPersonaCommand, int>
     {
         private readonly IPersonaRepository _personaRepository;
         private readonly IPersonaContactoRepository _personaContactoRepository;
@@ -26,7 +26,7 @@ namespace ContactInfoCRUD.Application.Handlers
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<int> Handle(CrearPersonaCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(GetPersonaCommand command, CancellationToken cancellationToken)
         {
             try
             {
